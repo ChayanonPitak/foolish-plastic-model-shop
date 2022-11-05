@@ -9,6 +9,8 @@ class Customer extends Model
 {
     public $timestamps = false;
 
+    protected $primaryKey = 'customerNumber';
+
     protected $fillable = [
         'customerNumber',
         'customerName',

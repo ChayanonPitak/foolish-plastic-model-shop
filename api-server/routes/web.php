@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::resource('customers', CustomerController::class);
+Route::resource('employees', EmployeeController::class);
 
 Route::get('/token', function () {
     return csrf_token(); 

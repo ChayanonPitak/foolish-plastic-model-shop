@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\Employee;
 
-class CustomerController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        return $customers;
+        $employees = Employee::all();
+        return $employees;
     }
 
     /**
@@ -36,23 +36,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customer([
-            'customerNumber' => $request->customerNumber,
-            'customerName' => $request->customerName,
-            'contactLastName' => $request->contactLastName,
-            'contactFirstName' => $request->contactFirstName,
-            'phone' => $request->phone,
-            'addressLine1' => $request->addressLine1,
-            'addressLine2' => $request->addressLine2,
-            'city' => $request->city,
-            'state' => $request->state,
-            'postalCode' => $request->postalCode,
-            'country' => $request->country,
-            'salesRepEmployeeNumber' => $request->salesRepEmployeeNumber,
-            'creditLimit' => $request->creditLimit
+        $employee = new Employee([
+            'employeeNumber' => $request->employeeNumber,
+            'lastName' => $request->lastName,
+            'firstName' => $request->firstName,
+            'extension' => $request->extension,
+            'email' => $request->email,
+            'officeCode' => $request->officeCode,
+            'reportsTo' => $request->reportsTo,
+            'jobTitle' => $request->jobTitle
         ]);
-        $customer->save();
-        return $customer;
+        $employee->save();
+        return $employee;
     }
 
     /**
@@ -63,9 +58,9 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::find($id);
-        if ($customer == null) return "Customer not found";
-        return $customer;
+        $employee = Employee::find($id);
+        if ($employee == null) return "Employee not found";
+        return $employee;
     }
 
     /**
