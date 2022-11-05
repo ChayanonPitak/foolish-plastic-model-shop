@@ -20,9 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('customers', CustomerController::class);
-Route::resource('employees', EmployeeController::class);
+Route::middleware(['cors'])->group(function () {
+    Route::resource('customers', CustomerController::class);
+    Route::resource('employees', EmployeeController::class);
+});
 
 Route::get('/token', function () {
-    return csrf_token(); 
+    return csrf_token();
 });
