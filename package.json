@@ -1,0 +1,14 @@
+{
+  "name": "foolish-plastic-model-shop",
+  "version": "1.0.0",
+  "description": "foolish-plastic-model-shop for 261343 project",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm --stream -r dev"
+  },
+  "dependencies": {
+    "api-docs": "workspace:*",
+    "api-server": "workspace:*",
+    "frontend": "workspace:*"
+  }
+}
