@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
 
+    protected $table = 'customers';
     protected $primaryKey = 'customerNumber';
-
     protected $fillable = [
         'customerNumber',
         'customerName',
@@ -26,4 +28,8 @@ class Customer extends Model
         'salesRepEmployeeNumber',
         'creditLimit'
     ];
+
+    public function employee() {
+        return $this->belongTo(Employee::class);
+    }
 }

@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    public $timestamps = false;
-
     use HasFactory;
 
-    protected $primaryKey = 'employeeNumber';
+    public $timestamps = false;
 
+    protected $table = 'employees';
+    protected $primaryKey = 'employeeNumber';
     protected $fillable = [
         'employeeNumber',
         'lastName',
@@ -23,4 +23,8 @@ class Employee extends Model
         'reportsTo',
         'jobTitle'
     ];
+
+    public function customers() {
+        return $this->hasMany(Customer::class);
+    }
 }
