@@ -7,8 +7,15 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faCartPlus } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
+import UserToken from '../../classes/userToken'
 
 export default function Product() {
+    var token:string
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') token = UserToken.getToken()
+    }, [])
+
     const router = useRouter()
     const { id } = router.query
 
@@ -18,8 +25,6 @@ export default function Product() {
     useEffect(() => {
         fetch("https://nekos.moe/api/v1/random/image?nsfw=false").then((res) => res.json()).then((json) => {setImage(json.images[0].id)})
     }, [])
-    
-
 
     return (
         <div>
@@ -49,14 +54,14 @@ export default function Product() {
                             <div className='h-10 flex flex-no-wrap mb-1'>
                                 <div className='text-2xl'> Quantity </div> 
                                 <div className='w-5'/>
-                                <input type="number" min={1} max={999} onChange={e => setOrderQuantity(parseInt(e.target.value))} className='p-1'/>
+                                <input type="number" min={1} max={999} onChange={e => setOrderQuantity(parseInt(e.target.value))} className='shadow appearance-none border rounded max-w-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'/>
                             </div>
                             <div className='text-m pb-20'> Quantity in stock {orderQuantity} </div> 
-                            <button className='w-full h-20 bg-green-900 hover:bg-green-600 text-white p-5 flex flex-no-wrap justify-center' type="button">
+                            {token && <button className='w-full h-20 bg-green-900 hover:bg-green-600 text-white p-5 flex flex-no-wrap justify-center' type="button">
                                 <FontAwesomeIcon icon={faCartPlus} className='h-full'/>
                                 <div className='w-5'/>
                                 <div className='text-5xl'> Add to cart </div> 
-                            </button>
+                            </button>}
                         </div>
                     </div>
                 </main>
