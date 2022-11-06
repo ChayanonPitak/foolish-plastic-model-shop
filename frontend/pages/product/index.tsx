@@ -74,8 +74,8 @@ export default function Product() {
 
                 <main>
                     <Navbar searchbar={true} navauth={true} />
-                    <div className="text-4xl">NOT FOUND</div>
-                    <div className="text-2xl">Return to <Link className="text-blue-700" href="/">Home</Link></div>
+                    <div className="pt-20 mx-60 text-4xl">NOT FOUND</div>
+                    <div className="mx-60 text-2xl">Return to <Link className="text-blue-700" href="/">Home</Link></div>
                 </main>
             </div>}
         </div>
