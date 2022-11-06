@@ -6,13 +6,20 @@ import Link from 'next/link'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faCartPlus } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Product() {
     const router = useRouter()
     const { id } = router.query
 
     const [orderQuantity, setOrderQuantity] = useState(0);
+
+    const [image, setImage] = useState('');
+    useEffect(() => {
+        fetch("https://nekos.moe/api/v1/random/image?nsfw=false").then((res) => res.json()).then((json) => {setImage(json.images[0].id)})
+    }, [])
+    
+
 
     return (
         <div>
@@ -26,7 +33,7 @@ export default function Product() {
                     <Navbar searchbar={true} navauth={true} />
                     <div className="mx-60 flex flex-wrap pt-20">
                         <div className='w-1/2 pr-4'>
-                            <img className='w-full h-96 object-cover pb-7'src='https://cataas.com/cat'/>
+                            <img className='w-full h-96 object-cover pb-7'src={`https://nekos.moe/image/${image}`}/>
                             <div className='text-2xl'> Product detail </div>
                             <hr className='w-full border-black'/>
                             <div className='text-xl'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi tempora, at modi est repellendus veritatis magnam numquam, ratione tenetur ipsum sint. Est sit odit blanditiis iste voluptas, beatae optio cum. </div>
