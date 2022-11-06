@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Office;
+use App\Models\Payment;
 
-class OfficeController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $office = Office::all();
-        return $office;
+        $payment = Payment::all();
+        return $payment;
     }
 
     /**
@@ -36,19 +36,14 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-        $office = new Office([
-            'officeCode' => $request->officeCode,
-            'city' => $request->city,
-            'phone' => $request->phone,
-            'addressLine1' => $request->addressLine1,
-            'addressLine2' => $request->addressLine2,
-            'state' => $request->state,
-            'country' => $request->country,
-            'postalCode' => $request->postalCode,
-            'territory' => $request->territory
+        $payment = new Payment([
+            'customerNumber' => $request->customerNumber,
+            'checkNumber' => $request->checkNumber,
+            'paymentDate' => $request->paymentDate,
+            'amount' => $request->amount
         ]);
-        $office->save();
-        return $office;
+        $payment->save();
+        return $payment;
     }
 
     /**
@@ -59,9 +54,9 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        $office = Office::find($id);
-        if ($office == null) return "Office not found";
-        return $office;
+        $payment = Payment::find($id);
+        if ($payment == null) return "payment not found";
+        return $payment;
     }
 
     /**

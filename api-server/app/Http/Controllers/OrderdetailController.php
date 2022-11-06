@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Office;
+use App\Models\Orderdetail;
 
-class OfficeController extends Controller
+class OrdertailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $office = Office::all();
-        return $office;
+        $orderdetail = Orderdetail::all();
+        return $orderdetail;
     }
 
     /**
@@ -36,19 +36,15 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-        $office = new Office([
-            'officeCode' => $request->officeCode,
-            'city' => $request->city,
-            'phone' => $request->phone,
-            'addressLine1' => $request->addressLine1,
-            'addressLine2' => $request->addressLine2,
-            'state' => $request->state,
-            'country' => $request->country,
-            'postalCode' => $request->postalCode,
-            'territory' => $request->territory
+        $orderdetail = new Orderdetail([
+            'orderNumber' => $request->orderNumber,
+            'productCode' => $request->productCode,
+            'quantityOrdered' => $request->quantityOrdered,
+            'priceEach' => $request->priceEach,
+            'orderLineNumber' => $request->orderLineNumber
         ]);
-        $office->save();
-        return $office;
+        $orderdetail->save();
+        return $orderdetail;
     }
 
     /**
@@ -59,9 +55,9 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        $office = Office::find($id);
-        if ($office == null) return "Office not found";
-        return $office;
+        $orderdetail = Orderdetail::find($id);
+        if ($orderdetail == null) return "Orderdetail not found";
+        return $orderdetail;
     }
 
     /**

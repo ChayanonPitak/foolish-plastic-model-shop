@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Office;
+use App\Models\User;
 
-class OfficeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $office = Office::all();
-        return $office;
+        $user = User::all();
+        return $user;
     }
 
     /**
@@ -36,19 +36,13 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-        $office = new Office([
-            'officeCode' => $request->officeCode,
-            'city' => $request->city,
-            'phone' => $request->phone,
-            'addressLine1' => $request->addressLine1,
-            'addressLine2' => $request->addressLine2,
-            'state' => $request->state,
-            'country' => $request->country,
-            'postalCode' => $request->postalCode,
-            'territory' => $request->territory
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
         ]);
-        $office->save();
-        return $office;
+        $user->save();
+        return $user;
     }
 
     /**
@@ -59,9 +53,9 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        $office = Office::find($id);
-        if ($office == null) return "Office not found";
-        return $office;
+        $user = User::find($id);
+        if ($user == null) return "user not found";
+        return $user;
     }
 
     /**
