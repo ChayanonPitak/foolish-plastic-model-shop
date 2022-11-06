@@ -24,4 +24,13 @@ class Product extends Model
         'buyPrice',
         'MSRP',
     ];
+
+    public function productlines() {
+        return $this->belongsTo(Productline::class);
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class,'orderdetails');
+    }
+        
 }

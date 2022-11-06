@@ -27,4 +27,8 @@ class Employee extends Model
     public function customers() {
         return $this->hasMany(Customer::class);
     }
+
+    public function offices() {
+        return $this->belongsTo(Office::class);
+    }
 }

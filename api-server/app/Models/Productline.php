@@ -19,4 +19,8 @@ class Productline extends Model
         'htmlDescription',
         'image',
     ];
+
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }
