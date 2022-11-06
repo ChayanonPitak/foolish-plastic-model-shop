@@ -37,7 +37,7 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         $office = new Office([
-            'officeCode' => $request->employeeNumber,
+            'officeCode' => $request->officeCode,
             'city' => $request->city,
             'phone' => $request->phone,
             'addressLine1' => $request->addressLine1,
