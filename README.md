@@ -18,6 +18,8 @@ Before developing please make sure that you have all of the following installed.
 
 - Latest LTS version of [Node.js](https://nodejs.org/en/) installed.
 - Javascript package manager of your choice installed - recommended [pnpm](https://pnpm.io/).
+- Latest release version of [PHP](https://www.php.net/) installed.
+- Latest version of [Composer](https://getcomposer.org/) installed.
 
 ## Setup the repository
 
