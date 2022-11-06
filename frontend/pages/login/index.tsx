@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Head from 'next/head'
 import Navbar from '../../components/navbar';
 
-export default function Login(setToken: Function) {
+export default function Login() {
+
     const [error, setError] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
