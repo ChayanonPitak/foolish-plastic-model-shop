@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('customerNumber')->length(11)->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('customerNumber')->references('customerNumber')->on('customers');
         });
     }
 
