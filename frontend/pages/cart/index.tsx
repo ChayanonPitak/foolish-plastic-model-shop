@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar'
 import ProductCart from '../../components/productcard_cart'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDollarSign, faCartPlus, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { faDollarSign, faCartShopping, faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react'
 import UserToken from '../../classes/userToken'
 import Link from 'next/link'
@@ -31,8 +31,13 @@ export default function Home() {
 
             <main>
                 <Navbar searchbar={false} navauth={true} />
+                <div className='mx-60 w-full pt-5 flex flex-no-wrap justify-start h-24'>
+                    <FontAwesomeIcon icon={faCartShopping} className='h-full'/>
+                    <div className='w-5'/>
+                    <div className='text-4xl h-full'> Your cart </div> 
+                </div>
 
-                {token && <div className="mx-60 flex pt-20">
+                {token && <div className="mx-60 flex pt-5">
                     <div className="w-2/3 pr-2 flex flex-row flex-wrap " >
                         {items}
                     </div>
@@ -46,12 +51,12 @@ export default function Home() {
                         <button className='w-full h-14 bg-green-900 hover:bg-green-600 text-white p-3 mt-2 flex flex-no-wrap justify-center' type="button" onClick={checkout}>
                             <FontAwesomeIcon icon={faCreditCard} className='h-full'/>
                             <div className='w-5'/>
-                            <div className='text-xl'> Add to cart </div> 
+                            <div className='text-xl'> Checkout </div> 
                         </button>
                     </div>
                 </div>}
                 {!token &&
-                    <div className="text-2xl">Please <Link className="text-blue-700" href="/login">Log in</Link> to view the cart</div>
+                    <div className="mx-60 text-2xl pt-5">Please <Link className="text-blue-700" href="/login">Log in</Link> to view the cart</div>
                 }
 
             </main>

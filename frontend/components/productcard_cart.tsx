@@ -18,12 +18,12 @@ export default function ProductCart({ name, price, order, img }: ProductProps) {
             </div>
             <div className="space-y-2 ">
                 <div className="flex space-x-4">
-                    <button className='w-8 h-8 bg-sky-700 hover:bg-sky-400 text-white p-1'>-</button>
+                    <button className='w-8 h-8 bg-red-500 hover:bg-red-200 text-white p-1'>-</button>
                     <p>Order: {order}</p>
-                    <button className='w-8 h-8 bg-sky-700 hover:bg-sky-400 text-white p-1'>+</button>
+                    <button className='w-8 h-8 bg-green-700 hover:bg-green-400 text-white p-1'>+</button>
                 </div>
                 <div className="flex justify-end">
-                    <button className='w-16 h-8 bg-sky-700 hover:bg-sky-400 text-white p-1'>Delete</button>
+                    <button className='w-16 h-8 bg-red-700 hover:bg-red-600 text-white p-1'>Delete</button>
                 </div>
             </div>
 
