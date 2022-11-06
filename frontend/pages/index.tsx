@@ -3,6 +3,11 @@ import Navbar from '../components/navbar'
 import ProductCard from '../components/productcard'
 
 export default function Home() {
+  const items: JSX.Element[] = []
+  for (let i = 0; i<5; i++) {
+    items.push(<ProductCard name = {"Ford Mustang"} price ={100*i} stock ={i}/>)
+  }
+
   return (
     <div>
       <Head>
@@ -12,9 +17,8 @@ export default function Home() {
 
       <main>
         <Navbar searchbar={true} navauth={true}/>
-        <div className='flex'>        
-          <ProductCard name = {"Ford Mustang"} price ={100} stock ={1}/>
-          <ProductCard name = {"Ford Mustang"} price ={100} stock ={1}/>
+        <div className="w-full flex flex-wrap" >        
+          {items}
         </div>
       </main>
     </div>
