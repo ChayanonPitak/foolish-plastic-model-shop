@@ -45,7 +45,7 @@ class OfficeController extends Controller
             'state' => $request->state,
             'country' => $request->country,
             'postalCode' => $request->postalCode,
-            'territory' => $request->territory,
+            'territory' => $request->territory
         ]);
         $office->save();
         return $office;
