@@ -99,9 +99,14 @@ export default function Login() {
                 </div>
             }
             {!token &&
-                <div className="mx-60 text-2xl pt-5">Please <Link className="text-blue-700" href="/login">Log in</Link> to access the page</div>
+                <div>
+                    <Head>
+                        <title>Forbidden</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
+                    <div className="mx-60 text-2xl pt-5">Please <Link className="text-blue-700" href="/login">Log in</Link> to access the page</div>
+                </div>
             }
         </div>
-
     )
 }
