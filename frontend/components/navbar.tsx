@@ -1,5 +1,6 @@
 import Searchbar from "./searchbar"
 import NavAuth from "./navauth"
+import Link from 'next/link'
 
 type NavbarProps = {
   searchbar?: boolean;
@@ -9,9 +10,9 @@ type NavbarProps = {
 export default function Navbar({searchbar, navauth}: NavbarProps) {
   return (
     <div className="w-full bg-slate-800 h-min p-7 flex justify-between">
-        <a className="text-3xl text-white" href="."> Foolish Shop </a>
-        {searchbar ? <Searchbar/> : null}
-        {navauth ? <NavAuth/> : null}
+        <Link href="/" className="text-3xl text-white">Foolish Shop </Link>
+        {searchbar ? <Searchbar/> : <div className='w-1/2 h-full'/>}
+        {navauth ? <NavAuth/> : <div className='w-1/6 h-full'/>}
     </div>
   )
 }
