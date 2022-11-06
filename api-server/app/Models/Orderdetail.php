@@ -18,6 +18,6 @@ class Orderdetail extends Model
         'productCode',
         'quantityOrdered',
         'priceEach',
-        'orderLineNumber',
+        'orderLineNumber'
     ];
 }

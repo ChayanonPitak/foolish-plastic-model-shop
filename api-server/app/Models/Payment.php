@@ -17,7 +17,7 @@ class Payment extends Model
         'customerNumber',
         'checkNumber',
         'paymentDate',
-        'amount',
+        'amount'
     ];
 
     public function customers() {

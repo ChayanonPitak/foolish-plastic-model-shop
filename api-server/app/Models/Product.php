@@ -22,7 +22,7 @@ class Product extends Model
         'productDescription',
         'quantityInStock',
         'buyPrice',
-        'MSRP',
+        'MSRP'
     ];
 
     public function productlines() {
