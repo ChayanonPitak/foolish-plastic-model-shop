@@ -17,7 +17,7 @@ class Productline extends Model
         'productLine',
         'textDescription',
         'htmlDescription',
-        'image',
+        'image'
     ];
 
     public function products() {

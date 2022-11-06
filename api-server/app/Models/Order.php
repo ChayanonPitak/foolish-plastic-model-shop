@@ -20,7 +20,7 @@ class Order extends Model
         'shippedDate',
         'status',
         'comments',
-        'customerNumber',
+        'customerNumber'
     ];
 
     public function customers() {

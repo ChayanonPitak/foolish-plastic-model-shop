@@ -22,7 +22,7 @@ class Office extends Model
         'state',
         'country',
         'postalCode',
-        'territory',
+        'territory'
     ];
 
     public function employees() {
