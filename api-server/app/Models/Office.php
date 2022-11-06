@@ -24,4 +24,8 @@ class Office extends Model
         'postalCode',
         'territory',
     ];
+
+    public function employees() {
+        return $this->hasMany(Employee::class);
+    }
 }
