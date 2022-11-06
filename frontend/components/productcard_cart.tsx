@@ -8,7 +8,7 @@ type ProductProps = {
 export default function ProductCart({name,price,order,img}: ProductProps) {
     return (
         <div className="p-7 flex space-x-4">
-            <div className=" w-24 h-24 ring-2 ring-black"><img className="object-scale-down w-full h-full" src={img} /></div>
+            <div className=" w-24 h-24 ring-2 ring-black"><img className="object-scale-down w-full h-full" src="https://static.wixstatic.com/media/2cd43b_6332b492c4ea4c1991bbb15b4f76343a~mv2.png/v1/fill/w_320,h_197,q_90/2cd43b_6332b492c4ea4c1991bbb15b4f76343a~mv2.png" /></div>
                 <div>
                     <p>{name}</p>
                     <p>${price}/piece</p>
@@ -23,7 +23,6 @@ export default function ProductCart({name,price,order,img}: ProductProps) {
                     <div className="flex justify-end">
                         <button className='w-16 h-8 bg-sky-700 hover:bg-sky-400 text-white p-1'>Delete</button>
                     </div>
-                    
                 </div>
                 
         </div>
