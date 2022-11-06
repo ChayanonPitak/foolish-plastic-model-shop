@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Navbar from '../../components/navbar';
 import Link from 'next/link';
+import UserToken from '../../classes/userToken';
 
 export default function Login() {
+    var [token, setToken] = useState('')
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') setToken(UserToken.getToken())
+    }, [])
 
     const [error, setError] = useState('')
     const [name, setName] = useState('')

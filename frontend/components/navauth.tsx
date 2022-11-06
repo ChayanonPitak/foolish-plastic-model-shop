@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import UserToken from '../classes/userToken'
 
 export default function NavAuth() {
-    var token:string
+    var [token, setToken] = useState('')
 
     useEffect(() => {
-        if (typeof window !== 'undefined') token = UserToken.getToken()
+        if (typeof window !== 'undefined') setToken(UserToken.getToken())
     }, [])
     
     const logOut = () => UserToken.setToken('')

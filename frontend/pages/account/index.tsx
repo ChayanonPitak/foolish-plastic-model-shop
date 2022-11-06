@@ -5,10 +5,10 @@ import UserToken from '../../classes/userToken';
 import Link from 'next/link';
 
 export default function Login() {
-    var token: string
+    var [token, setToken] = useState('')
 
     useEffect(() => {
-        if (typeof window !== 'undefined') token = UserToken.getToken()
+        if (typeof window !== 'undefined') setToken(UserToken.getToken())
     }, [])
 
     const [error, setError] = useState('')

@@ -4,15 +4,15 @@ import ProductCart from '../../components/productcard_cart'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign, faCartShopping, faCreditCard } from '@fortawesome/free-solid-svg-icons'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import UserToken from '../../classes/userToken'
 import Link from 'next/link'
 
 export default function Home() {
-    var token:string
+    var [token, setToken] = useState('')
 
     useEffect(() => {
-        if (typeof window !== 'undefined') token = UserToken.getToken()
+        if (typeof window !== 'undefined') setToken(UserToken.getToken())
     }, [])
     
     const items: JSX.Element[] = []

@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react'
 import UserToken from '../../classes/userToken'
 
 export default function Product() {
-    var token:string
+    var [token, setToken] = useState('')
 
     useEffect(() => {
-        if (typeof window !== 'undefined') token = UserToken.getToken()
+        if (typeof window !== 'undefined') setToken(UserToken.getToken())
     }, [])
 
     const router = useRouter()
