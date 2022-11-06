@@ -13,9 +13,11 @@ export default function Home() {
 
       <main>
         <Navbar searchbar={true} navauth={true}/>
-        <ProductCard name = {"Test"} price ={100} stock ={1}/>
+        <div className='flex'>        
+          <ProductCard name = {"Ford Mustang"} price ={100} stock ={1}/>
+          <ProductCard name = {"Ford Mustang"} price ={100} stock ={1}/>
+        </div>
       </main>
-
     </div>
   )
 }
