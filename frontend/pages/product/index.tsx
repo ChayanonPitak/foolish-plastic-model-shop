@@ -30,7 +30,7 @@ export default function Product() {
         <div>
             {id && <div>
                 <Head>
-                    <title>FOOLISH plastic model shop</title>
+                    <title>Product name - Foolish shop</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
