@@ -24,7 +24,7 @@ export default function Product() {
 
                 <main>
                     <Navbar searchbar={true} navauth={true} />
-                    <div className="mx-60 bg-slate-300 flex flex-wrap pt-20">
+                    <div className="mx-60 flex flex-wrap pt-20">
                         <div className='w-1/2 pr-4'>
                             <img className='w-full h-96 object-cover pb-7'src='https://cataas.com/cat'/>
                             <div className='text-2xl'> Product detail </div>
@@ -49,7 +49,7 @@ export default function Product() {
                                 <FontAwesomeIcon icon={faCartPlus} className='h-full'/>
                                 <div className='w-5'/>
                                 <div className='text-5xl'> Add to cart </div> 
-                                </button>
+                            </button>
                         </div>
                     </div>
                 </main>
