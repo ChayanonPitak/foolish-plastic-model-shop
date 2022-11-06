@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +20,36 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::withoutMiddleware([VerifyCsrfToken::class])->group(function () {
+// Route::resource('customers', CustomerController::class);
+// Route::resource('employees', EmployeeController::class);
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::group(['middleware' => ['guest']], function () {
+        /**
+         * Register Routes
+         */
+
+        /**
+         * Login Routes
+         */
+    });
+    Route::group(['middleware' => ['auth']], function () {
+        /**
+         * Logout Routes
+         */
+        Route::get('/logout', 'LogoutController@perform');
+    });
 });
 
-Route::middleware(['cors'])->group(function () {
-    Route::resource('customers', CustomerController::class);
-    Route::resource('employees', EmployeeController::class);
-});
+// Route::controller(UserController::class)->group(function () {
+//     Route::get('/users/{id}', 'show');
+//     Route::post('/users', 'store');
+// });
+// });
+
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/token', function () {
     return csrf_token();
