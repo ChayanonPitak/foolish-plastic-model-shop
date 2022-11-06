@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::resource('customers', CustomerController::class);
+Route::resource('employees', EmployeeController::class);
+
+Route::get('/token', function () {
+    return csrf_token(); 
 });
