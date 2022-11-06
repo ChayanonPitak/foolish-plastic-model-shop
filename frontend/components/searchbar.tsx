@@ -1,14 +1,20 @@
 import { useCallback, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Searchbar() {
     const searchRef = useRef(null)
     const [query, setQuery] = useState('')
+    const router = useRouter()
 
     const onChange = useCallback((e) => {
         setQuery(e.target.value)
     }, [])
 
-    const onSubmit = () => alert(`Searching ${query}`)
+    const onSubmit = (e) => {
+        router.query.search = query
+        router.push(router)
+        e.preventDefault();
+    }
 
     return (
         <form className='w-1/2 bg-slate-800 h-full' ref={searchRef} onSubmit={onSubmit}>
