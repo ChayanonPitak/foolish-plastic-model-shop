@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Navbar/>
+        <Navbar searchbar={true} navauth={true}/>
       </main>
 
     </div>
