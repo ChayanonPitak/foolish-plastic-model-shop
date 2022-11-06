@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head'
 import Navbar from '../../components/navbar';
+import Link from 'next/link';
 
 export default function Login() {
 
@@ -46,6 +47,7 @@ export default function Login() {
                         </div>
                     </div>
                     <input className='text-4xl w-full bg-sky-700 hover:bg-sky-400 text-white p-5' type="submit" value="Log in" />
+                    <div>Doesn't have account? <Link className="text-blue-700" href="/register">Register</Link></div>
                 </form>
             </div>
         </div>
