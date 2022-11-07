@@ -62,7 +62,7 @@ class CartController extends Controller
         if ($user == null) return response('User not found', 400);
         $product = Product::where('productCode', $productCode)->first();
         $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
-        if ($product->quantity - $quantity < 0) return response('Product in stock is not enough', 400);
+        if ($product->quantityInStock - $quantity < 0) return response('Product in stock is not enough', 400);
         DB::transaction(function () use ($user, $product, $cartProduct, $quantity) {
             if($cartProduct != null) {
                 $cartProduct->quantity = $cartProduct->quantity + $quantity;
