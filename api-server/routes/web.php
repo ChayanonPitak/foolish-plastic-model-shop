@@ -57,6 +57,7 @@ Route::middleware(['cors'])->group(function () {
     Route::delete('/cart/remove-from-cart', [CartController::class, "removeFromCart"]);
     Route::delete('/decrease', [CartController::class, 'decreaseOnCart']);
     Route::get('/cart', [CartController::class, "cart"]);
+    Route::get('/search/{name}', [ProductController::class, "search"]);
 });
 // Route::controller(UserController::class)->group(function () {
 //     Route::get('/users/{id}', 'show');
