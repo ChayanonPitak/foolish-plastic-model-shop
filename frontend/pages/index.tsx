@@ -7,14 +7,14 @@ export default function Home() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:8000/product").then((res) => res.json()).then((json) => {console.log(json); setProducts(json) })
+        fetch("http://localhost:8000/product").then((res) => res.json()).then((json) => setProducts(json))
     }, [])
 
 
     const items: JSX.Element[] = []
-    for (const product of products) {
-        items.push(<ProductCard code={product.productCode} name={product.productName} price={product.buyPrice} stock={product.quantityInStock}/>)
-    }
+    products.forEach((product, i) => {
+        items.push(<ProductCard key={i} code={product.productCode} name={product.productName} price={product.buyPrice} stock={product.quantityInStock}/>)
+    })
 
     return (
         <div>
