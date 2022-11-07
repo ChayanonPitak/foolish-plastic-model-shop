@@ -11,14 +11,25 @@ import Link from 'next/link'
 export default function Home() {
     var [token, setToken] = useState('')
 
+    const [products, setProducts] = useState([])
+    var [totalPrice, setTotalPrice] = useState(0)
+
     useEffect(() => {
         if (typeof window !== 'undefined') setToken(UserToken.getToken())
-    }, [])
+    },[])
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/cart?token=${token}`).then((res) => res.json()).then((json) =>{setProducts(json)})
+    },[token])
     
-    const items: JSX.Element[] = []
-    for (let i = 0; i < 10; i++) {
-        items.push(<ProductCart name={"Ford Mustang"} price={100 * i} order={i} />)
-    }
+    const [cartItems, setCartItems] = useState([])
+    useEffect(() => {
+        const items: JSX.Element[] = []
+        products.forEach((product, i) => {
+            items.push(<ProductCart key={i} code={product.productCode} cartId={product.id} order={product.quantity}/>)
+            fetch(`http://localhost:8000/product/${product.productCode}`).then((res) => res.json()).then((json) =>setTotalPrice(totalPrice + json.buyPrice * product.quantity))})
+        setCartItems(items)
+    },[products])
 
     const checkout = () => {}
 
@@ -39,16 +50,16 @@ export default function Home() {
 
                 {token && <div className="mx-60 flex pt-5">
                     <div className="w-2/3 pr-2 flex flex-row flex-wrap " >
-                        {items}
+                        {cartItems}
                     </div>
                     <div className="w-1/3 p-2 border border-black h-36">
                         <div className='h-10 flex flex-no-wrap mb-5'>
                             <FontAwesomeIcon icon={faDollarSign} className='h-full' />
                             <div className='w-5' />
-                            <div className='text-2xl'> Total Price {100000}</div>
+                            <div className='text-2xl'> Total Price {totalPrice}</div>
                         </div>
                         <hr className='w-full border-black'/>
-                        <button className='w-full h-14 bg-green-900 hover:bg-green-600 text-white p-3 mt-2 flex flex-no-wrap justify-center' type="button" onClick={checkout}>
+                        <button className='w-full h-14 bg-green-900 hover:bg-green-600 disabled:bg-gray-600 text-white p-3 mt-2 flex flex-no-wrap justify-center' type="button" onClick={checkout} disabled={products.length<=0}>
                             <FontAwesomeIcon icon={faCreditCard} className='h-full'/>
                             <div className='w-5'/>
                             <div className='text-xl'> Checkout </div> 
