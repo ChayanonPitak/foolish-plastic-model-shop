@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Navbar from '../../components/navbar';
 import Link from 'next/link';
 import UserToken from '../../classes/userToken';
+import { useRouter } from 'next/router';
 
 export default function Login() {
     var [token, setToken] = useState('')
+    const router = useRouter();
 
     useEffect(() => {
         if (typeof window !== 'undefined') setToken(UserToken.getToken())
@@ -17,9 +19,21 @@ export default function Login() {
     const [isOtpRequest, setIsOtpRequest] = useState(false)
     const [otp, setOtp] = useState('')
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
         if (otp !== '111111') setError('Incorrect OTP')
-        else alert(`Login with ${username} ${password} ${otp}`)
+        else 
+        {
+            fetch(`http://localhost:8000/login?username=${username}&password=${password}`, {method: 'POST',mode:'cors'})
+            .then((res) => res.json())
+            .then((json) => {
+                if (json.error) setError(json.error)
+                else if (json.token) {
+                    UserToken.setToken(json.token)
+                    router.push('/')
+                }
+            })
+        }
+        e.preventDefault()
     }
     return (
         <div>
@@ -31,7 +45,7 @@ export default function Login() {
                 <div>
                     <Navbar searchbar={true} />
                     <div className='w-full h-full flex flex-col justify-center items-center'>
-                        <form action="http://127.0.0.1:8000/login" method="POST" onSubmit={onSubmit} className="items-center bg-white shadow-md rounded m-4 px-8 pt-6 pb-8 g-1">
+                        <form onSubmit={onSubmit} className="items-center bg-white shadow-md rounded m-4 px-8 pt-6 pb-8 g-1">
                             <div className={`bg-red-200 text-xl ${error.length > 0 ? `p-5` : ``}`}>{error}</div>
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">
