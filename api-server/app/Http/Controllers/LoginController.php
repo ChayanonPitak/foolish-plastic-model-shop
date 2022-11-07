@@ -15,13 +15,17 @@ class LoginController extends Controller
     {
         $credentails = $request->getCredentials();
         if (!Auth::validate($credentails)) :
-            return redirect("http://127.0.0.1:3000/");
+            return response()->json([
+                'error' => 'Invalid credentials'
+            ], 401);
         endif;
         $user = Auth::getProvider()->retrieveByCredentials($credentails);
         Auth::login($user);
         $token = $request->user()->createToken($request->username);
         $user->remember_token = $token->plainTextToken;
         $user->save();
-        return $user->remember_token;
+        return response()->json([
+            'token' => $user->remember_token
+        ], 200);
     }
 }

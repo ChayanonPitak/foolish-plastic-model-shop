@@ -30,7 +30,7 @@ export default function Login() {
             {token &&
                 <div>
                     <Head>
-                        <title>Edit</title>
+                        <title>Account</title>
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
                     <Navbar searchbar={true} />

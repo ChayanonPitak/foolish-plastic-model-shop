@@ -18,7 +18,11 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::create($request->validated());
-        auth()->login($user);
-        return "Success register";
+        if ($user) : return response()->json([
+            'status' => 'OK'
+        ], 200); endif;
+        return response()->json([
+            'error' => 'Failed, Please cleck the credential'
+        ], 401);
     }
 }
