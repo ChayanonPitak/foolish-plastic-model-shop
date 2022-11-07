@@ -1,15 +1,20 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import UserToken from '../classes/userToken'
 
 export default function NavAuth() {
     var [token, setToken] = useState('')
+    const router = useRouter()
 
     useEffect(() => {
         if (typeof window !== 'undefined') setToken(UserToken.getToken())
     }, [])
     
-    const logOut = () => UserToken.setToken('')
+    const logOut = () =>{
+        UserToken.setToken('')
+        router.reload()
+    } 
 
     return (
         <div className='w-1/6 h-full'>
