@@ -75,7 +75,7 @@ class CartController extends Controller
                 $cart = new Cart();
                 $cart->userId = $user->id;
                 $cart->productCode = $product->productCode;
-                $cart->quantity = 1;
+                $cart->quantity = $quantity;
                 $cart->save();
                 }
                 $product->quantityInStock = $product->quantityInStock - $quantity;
