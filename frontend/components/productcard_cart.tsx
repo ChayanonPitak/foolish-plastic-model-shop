@@ -21,7 +21,6 @@ export default function ProductCart({ code, cartId, order, img }: ProductProps) 
     const [product,setProduct]: any = useState()
     
     useEffect(() => {
-        console.log(code);
         fetch(`http://localhost:8000/product/${code}`).then((res) => res.json()).then((json) => setProduct(json))
     }, [])
 
