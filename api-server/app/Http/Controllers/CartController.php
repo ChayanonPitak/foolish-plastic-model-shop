@@ -30,15 +30,18 @@ class CartController extends Controller
         //
     }
 
-    public function cart($token)
+    public function cart(Request $request)
     {
+        $token = $request->token;
         $user = User::where('remember_token', $token)->first();
         $products = Cart::where('userId', $user->id);
-        return $products;
+        return $products->get();
     }
 
-    public function removeFromCart($token, $productCode)
+    public function removeFromCart(Request $request)
     {
+        $token = $request->token;
+        $productCode = $request->productCode;
         $user = User::where('remember_token', $token)->first();
         $product = Product::find($productCode);
         $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
