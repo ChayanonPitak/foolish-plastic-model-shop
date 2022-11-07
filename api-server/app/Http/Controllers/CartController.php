@@ -59,10 +59,14 @@ class CartController extends Controller
         $productCode = $request->productCode;
         $quantity = $request->quantity;
         $user = User::where('remember_token', $token)->first();
-        if ($user == null) response('User not found', 400);
+        if ($user == null) return response()->json([
+            'error' => 'User not found'
+        ], 400);
         $product = Product::find($productCode);
         $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
-        if ($product->quantity - $quantity < 0) return response('Product in stock is not enough', 400);
+        if ($product->quantity - $quantity < 0) return response()->json([
+                'error' => 'Product in stock is not enough'
+            ], 400);
         DB::transaction(function () use ($user, $product, $cartProduct, $quantity) {
             if($cartProduct != null) {
                 $cartProduct->quantity = $cartProduct->quantity + $quantity;
@@ -77,7 +81,9 @@ class CartController extends Controller
                 $product->quantityInStock = $product->quantityInStock - $quantity;
                 $product->save();
         });
-        return response('Transaction Success', 200);
+        return response()->json([
+            'status' => 'OK'
+        ], 200);
     }
 
     public function decreaseOnCart(Request $request)
