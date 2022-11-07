@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('username')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('customers', function (Blueprint $table) {
+            $table->unsignedBigInteger('userId')->length(20)->nullable();
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
@@ -36,6 +30,5 @@ return new class extends Migration
             $table->dropForeign(['userId']);
             $table->dropColumn('userId');
         });
-        Schema::dropIfExists('users');
     }
 };
