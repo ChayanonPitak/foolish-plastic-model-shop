@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -28,10 +30,46 @@ class CartController extends Controller
         //
     }
 
-    public function cart($token) {
-        $user = User::where('remember_token', '=', $token);
-        $products = Cart::where('userId', '=', $user->id);
+    public function cart($token)
+    {
+        $user = User::where('remember_token', $token)->first();
+        $products = Cart::where('userId', $user->id);
         return $products;
+    }
+
+    public function removeFromCart($token, $productCode)
+    {
+        $user = User::where('remember_token', $token)->first();
+        $product = Product::find($productCode);
+        $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
+        DB::transaction(function () use ($product, $cartProduct) {
+            $product->quantityInStock = $product->quantityInStock + $cartProduct->quantity;
+            $product->save();
+            $cartProduct->delete();
+        });
+        return response('Transaction Success', 200);
+    }
+
+    public function addToCart($token, $productCode)
+    {
+        $user = User::where('remember_token', $token)->first();
+        $product = Product::find($productCode);
+        $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
+        DB::transaction(function () use ($user, $product, $cartProduct) {
+            if($cartProduct != null) {
+                $cartProduct->quantity = $cartProduct->quantity+1;
+                $cartProduct->save();
+                } else {
+                $cart = new Cart();
+                $cart->userId = $user->id;
+                $cart->productCode = $product->productCode;
+                $cart->quantity = 1;
+                $cart->save();
+                }
+                $product->quantityInStock = $product->quantityInStock-1 ;
+                $product->save();
+        });
+        return response('Transaction Success', 200);
     }
 
     /**
