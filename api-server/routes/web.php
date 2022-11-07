@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/', function () {
 Route::middleware(['cors'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('employees', EmployeeController::class);
+    Route::resource('product', ProductController::class);
 });
 
 Route::get('/token', function () {
