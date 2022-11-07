@@ -50,11 +50,13 @@ Route::middleware(['cors'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('employees', EmployeeController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('cart', CartController::class);
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
-    Route::resource('cart', CartController::class);
-    Route::post('/add-to-cart', [CartController::class, "addToCart"]);
-    Route::delete('/remove-from-cart', [CartController::class, "removeFromCart"]);
+    Route::post('/cart/add-to-cart', [CartController::class, "addToCart"]);
+    Route::delete('/cart/remove-from-cart', [CartController::class, "removeFromCart"]);
+    Route::delete('/decrease', [CartController::class, 'decreaseOnCart']);
+    Route::get('/cart', [CartController::class, "cart"]);
 });
 // Route::controller(UserController::class)->group(function () {
 //     Route::get('/users/{id}', 'show');

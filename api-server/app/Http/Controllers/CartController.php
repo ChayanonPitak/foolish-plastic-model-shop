@@ -78,6 +78,22 @@ class CartController extends Controller
         return response('Transaction Success', 200);
     }
 
+    public function decreaseOnCart(Request $request)
+    {
+        $token = $request->token;
+        $productCode = $request->productCode;
+        $user = User::where('remember_token', $token)->first();
+        $product = Product::where('productCode', $productCode)->first();
+        $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
+        DB::transaction(function () use ($product, $cartProduct) {
+            $product->quantityInStock = $product->quantityInStock + 1;
+            $product->save();
+            $cartProduct->quantity = $cartProduct->quantity - 1;
+            $cartProduct->save();
+        });
+        return response('Transaction Success', 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
