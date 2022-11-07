@@ -19,8 +19,8 @@ class LoginController extends Controller
         endif;
         $user = Auth::getProvider()->retrieveByCredentials($credentails);
         Auth::login($user);
-        $token = sha1(rand());
-        $user->remember_token = $token;
+        $token = $request->user()->createToken($request->username);
+        $user->remember_token = $token->plainTextToken;
         $user->save();
         return $user->remember_token;
     }

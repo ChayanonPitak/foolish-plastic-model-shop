@@ -19,6 +19,6 @@ class RegisterController extends Controller
     {
         $user = User::create($request->validated());
         auth()->login($user);
-        return redirect('http://127.0.0.1:3000/')->with('success', "Account successfully registered.");
+        return "Success register";
     }
 }
