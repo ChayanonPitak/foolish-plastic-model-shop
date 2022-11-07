@@ -62,12 +62,12 @@ export default function Product() {
                                 <input type="number" min={product.quantityInStock > 0 ? 1 : 0} max={product.quantityInStock} onChange={e => setOrderQuantity(parseInt(e.target.value))} disabled={product.quantityInStock <= 0} className='shadow appearance-none border rounded max-w-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'/>
                             </div>
                             <div className='text-m pb-20'> Quantity in stock {product.quantityInStock} </div> 
-                            {!token && product.quantityInStock > 0 && <button className='w-full h-20 bg-green-900 hover:bg-green-600 disabled:bg-gray-600 text-white p-5 flex flex-no-wrap justify-center' type="button" disabled={orderQuantity<=0}>
+                            {token && product.quantityInStock > 0 && <button className='w-full h-20 bg-green-900 hover:bg-green-600 disabled:bg-gray-600 text-white p-5 flex flex-no-wrap justify-center' type="button" disabled={orderQuantity<=0}>
                                 <FontAwesomeIcon icon={faCartPlus} className='h-full'/>
                                 <div className='w-5'/>
                                 <div className='text-5xl'> Add to cart </div> 
                             </button>}
-                            {!token && product.quantityInStock <= 0 && <button className='w-full h-20 bg-gray-600  text-white p-5 flex flex-no-wrap justify-center' type="button" disabled={orderQuantity<=0}>
+                            {token && product.quantityInStock <= 0 && <button className='w-full h-20 bg-gray-600  text-white p-5 flex flex-no-wrap justify-center' type="button" disabled={orderQuantity<=0}>
                                 <div className='text-5xl'> Out of stock</div> 
                             </button>}
                             
