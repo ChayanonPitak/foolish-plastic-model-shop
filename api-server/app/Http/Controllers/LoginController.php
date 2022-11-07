@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -18,7 +19,9 @@ class LoginController extends Controller
         endif;
         $user = Auth::getProvider()->retrieveByCredentials($credentails);
         Auth::login($user);
-        $user->remember_token = Str::random(60);
-        return $user;
+        $token = sha1(rand());
+        $user->remember_token = $token;
+        $user->save();
+        return $user->remember_token;
     }
 }
