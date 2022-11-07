@@ -64,7 +64,7 @@ class CartController extends Controller
         ], 400);
         $product = Product::find($productCode);
         $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
-        if ($product->quantity - $quantity < 0) return response()->json([
+        if ($product->quantityInStock - $quantity < 0) return response()->json([
                 'error' => 'Product in stock is not enough'
             ], 400);
         DB::transaction(function () use ($user, $product, $cartProduct, $quantity) {
