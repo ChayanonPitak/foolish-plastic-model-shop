@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Middleware\VerifyCsrfToken;
 
 
@@ -49,6 +50,10 @@ Route::middleware(['cors'])->group(function () {
     Route::resource('customers', CustomerController::class);
     Route::resource('employees', EmployeeController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('cart', CartController::class);
+    Route::post('/add-to-cart', [CartController::class, "addToCart"]);
+    Route::delete('/remove-from-cart', [CartController::class, "removeFromCart"]);
+    
 });
 // Route::controller(UserController::class)->group(function () {
 //     Route::get('/users/{id}', 'show');

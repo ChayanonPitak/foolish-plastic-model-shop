@@ -50,9 +50,12 @@ class CartController extends Controller
         return response('Transaction Success', 200);
     }
 
-    public function addToCart($token, $productCode)
+    public function addToCart(Request $request)
     {
+        $token = $request->token;
+        $productCode = $request->productCode;
         $user = User::where('remember_token', $token)->first();
+        if ($user == null) response('User not found', 400);
         $product = Product::find($productCode);
         $cartProduct = Cart::where('userId', $user->id)->where('productCode', $productCode)->first();
         DB::transaction(function () use ($user, $product, $cartProduct) {
