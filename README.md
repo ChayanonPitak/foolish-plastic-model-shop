@@ -7,7 +7,7 @@ Plastic model shop template with mysql intregration.
 | Folder | Version | Description | 
 | ------ | ------- | ----------- |
 | [api-server](./api-server) | 1.0.0 | Server that handle api using [Laravel](https://laravel.com/) |
-| [api-docs](./api-docs) | 1.0.0 | API documentation from [api-server](./api-server) usine [OpenAPI Specification](https://swagger.io/specification/) and [swagger-ui](https://github.com/swagger-api/swagger-ui) |
+| ~~[api-docs](./api-docs)~~ | ~~1.0.0~~ | ~~API documentation from [api-server](./api-server) usine [OpenAPI Specification](https://swagger.io/specification/) and [swagger-ui](https://github.com/swagger-api/swagger-ui)~~ |
 | [frontend](./frontend) | 1.0.0 | Example shop template using [Next.js](https://nextjs.org/) |
 
 # Development
